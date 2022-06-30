@@ -115,7 +115,7 @@ func middleware(conf *Config) znet.HandlerFunc {
 		start := time.Now()
 		c.Next()
 		p := c.PrevContent()
-		status := strconv.Itoa(p.Code)
+		status := strconv.FormatInt(int64(p.Code.Load()), 10)
 		endpoint := c.Request.URL.Path
 		method := c.Request.Method
 		lvs := []string{status, endpoint, method}
